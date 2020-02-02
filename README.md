@@ -1,3 +1,5 @@
-# Terrible Template
+# Terrible API Service
 
-Just a repository template setup with the bits I like.
+Will reactivity talk to Mongo and maybe the Terrible Task Launcher but we shall see. 
+
+Hopefully this doesn't turn into the central processing brain. 

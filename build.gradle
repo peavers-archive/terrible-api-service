@@ -30,7 +30,9 @@ ext {
 
 dependencies {
     // Spring
-    
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
     // Apache
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'commons-io:commons-io:2.6'

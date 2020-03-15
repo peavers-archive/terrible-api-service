@@ -5,6 +5,11 @@ import io.terrible.api.domain.MediaFile;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
-/** @author Chris Turner (chris@forloop.space) */
+
+/**
+ * @author Chris Turner (chris@forloop.space)
+ */
 @Repository
-public interface MediaFileRepository extends ReactiveMongoRepository<MediaFile, Long> {}
+public interface MediaFileRepository extends ReactiveMongoRepository<MediaFile, Long> {
+
+}

@@ -26,13 +26,6 @@ public class DirectoryServiceImpl implements DirectoryService {
 
   @Override
   public Mono<Directory> save(final Directory directory) {
-
-    // Don't save empty directories
-    if (StringUtils.isAnyEmpty(directory.getPath())) {
-      return Mono.empty();
-    }
-
-    // Hard replace all values
     return directoryRepository.save(directory);
   }
 

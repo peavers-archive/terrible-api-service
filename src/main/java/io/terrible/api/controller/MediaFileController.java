@@ -9,26 +9,24 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/**
- * @author Chris Turner (chris@forloop.space)
- */
+/** @author Chris Turner (chris@forloop.space) */
 @Slf4j
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class MediaFileController {
 
-    private final MediaFileRepository mediaFileRepository;
+  private final MediaFileRepository mediaFileRepository;
 
-    @GetMapping("/media-files")
-    public Flux<MediaFile> findAll() {
+  @GetMapping("/media-files")
+  public Flux<MediaFile> findAll() {
 
-        return mediaFileRepository.findAll();
-    }
+    return mediaFileRepository.findAll();
+  }
 
-    @PostMapping("/media-files")
-    public Mono<MediaFile> save(@RequestBody final MediaFile mediaFile) {
+  @PostMapping("/media-files")
+  public Mono<MediaFile> save(@RequestBody final MediaFile mediaFile) {
 
-        return mediaFileRepository.save(mediaFile);
-    }
+    return mediaFileRepository.save(mediaFile);
+  }
 }

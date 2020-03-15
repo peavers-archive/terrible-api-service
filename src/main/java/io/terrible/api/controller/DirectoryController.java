@@ -8,46 +8,36 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-/**
- * @author Chris Turner (chris@forloop.space)
- */
+/** @author Chris Turner (chris@forloop.space) */
 @Slf4j
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class DirectoryController {
 
-    private final DirectoryService directoryService;
+  private final DirectoryService directoryService;
 
-    @GetMapping("/directory")
-    public Mono<Directory> findAll() {
+  @GetMapping("/directory")
+  public Mono<Directory> findAll() {
 
-        log.info("findAll");
+    return directoryService.findAll().next();
+  }
 
-        return directoryService.findAll().next();
-    }
+  @PostMapping("/directory")
+  public Mono<Directory> save(@RequestBody final Directory directory) {
 
-    @PostMapping("/directory")
-    public Mono<Directory> save(@RequestBody final Directory directory) {
+    return directoryService.save(directory);
+  }
 
-        log.info("save {}", directory);
+  @GetMapping("/directory/{directoryId}")
+  public Mono<Directory> findById(@PathVariable final String directoryId) {
 
-        return directoryService.save(directory);
-    }
+    return directoryService.findById(directoryId);
+  }
 
-    @GetMapping("/directory/{directoryId}")
-    public Mono<Directory> findById(@PathVariable final String directoryId) {
+  @DeleteMapping("/directory/{directoryId}")
+  public Mono<Void> deleteById(@PathVariable final String directoryId) {
 
-        log.info("findById {}", directoryId);
-
-        return directoryService.findById(directoryId);
-    }
-
-    @DeleteMapping("/directory/{directoryId}")
-    public Mono<Void> deleteById(@PathVariable final String directoryId) {
-
-        log.info("deleteById {}", directoryId);
-
-        return directoryService.deleteById(directoryId);
-    }
+    return directoryService.deleteById(directoryId);
+  }
 }

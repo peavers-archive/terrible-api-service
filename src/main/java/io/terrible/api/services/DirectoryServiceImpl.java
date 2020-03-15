@@ -5,7 +5,6 @@ import io.terrible.api.domain.Directory;
 import io.terrible.api.repository.DirectoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,6 +25,7 @@ public class DirectoryServiceImpl implements DirectoryService {
 
   @Override
   public Mono<Directory> save(final Directory directory) {
+
     return directoryRepository.save(directory);
   }
 

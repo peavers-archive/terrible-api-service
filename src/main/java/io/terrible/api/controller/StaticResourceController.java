@@ -1,5 +1,8 @@
+/* Licensed under Apache-2.0 */
 package io.terrible.api.controller;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -7,9 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.File;
-import java.net.MalformedURLException;
 
 /** @author Chris Turner (chris@forloop.space) */
 @RestController

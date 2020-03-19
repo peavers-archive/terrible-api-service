@@ -22,7 +22,7 @@ public class StaticResourceController {
 
     return file.canRead()
         ? new FileSystemResource(file)
-        : new UrlResource("https://via.placeholder.com/150");
+        : new UrlResource("https://via.placeholder.com/316x210");
   }
 
   @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)

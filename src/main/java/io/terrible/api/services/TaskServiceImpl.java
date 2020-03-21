@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
   public Flux<Boolean> createThumbnails() {
 
     return mediaFileRepository
-        .findAll()
+        .findAllByThumbnailsIsNull()
         .map(MediaFile::getAbsolutePath)
         .flatMap(
             path ->

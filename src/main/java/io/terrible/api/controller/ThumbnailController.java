@@ -12,21 +12,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-/** @author Chris Turner (chris@forloop.space) */
+/**
+ * @author Chris Turner (chris@forloop.space)
+ */
 @Slf4j
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class ThumbnailController {
 
-  private final MediaFileRepository mediaFileRepository;
+    private final MediaFileRepository mediaFileRepository;
 
-  @PostMapping("/thumbnails")
-  public Mono<MediaFile> save(@RequestBody final ThumbnailList thumbnails) {
+    @PostMapping("/thumbnails")
+    public Mono<MediaFile> save(@RequestBody final ThumbnailList thumbnails) {
 
-    return mediaFileRepository
-        .findByAbsolutePath(thumbnails.getVideoPath())
-        .doOnNext(mediaFile -> mediaFile.setThumbnails(thumbnails.getThumbnails()))
-        .flatMap(mediaFileRepository::save);
-  }
+        log.info("Saving thumbnails {}", thumbnails.getVideoPath());
+
+        return mediaFileRepository
+                .findByAbsolutePath(thumbnails.getVideoPath())
+                .doOnNext(mediaFile -> mediaFile.setThumbnails(thumbnails.getThumbnails()))
+                .flatMap(mediaFileRepository::save);
+    }
 }

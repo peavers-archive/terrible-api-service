@@ -20,13 +20,16 @@ public class MediaFileController {
 
   @GetMapping("/media-files")
   public Flux<MediaFile> findAll() {
-
     return mediaFileRepository.findAll();
+  }
+
+  @GetMapping("/media-files/{id}")
+  public Mono<MediaFile> findById(@PathVariable final String id) {
+    return mediaFileRepository.findById(id);
   }
 
   @PostMapping("/media-files")
   public Mono<MediaFile> save(@RequestBody final MediaFile mediaFile) {
-
     return mediaFileRepository.save(mediaFile);
   }
 }

@@ -42,7 +42,6 @@ dependencies {
     implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '7.6.1'
     implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.1'
 
-
     // Development
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

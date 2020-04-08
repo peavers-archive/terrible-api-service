@@ -2,6 +2,7 @@
 package io.terrible.api.repository;
 
 import io.terrible.api.domain.MediaFile;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -14,4 +15,5 @@ public interface MediaFileRepository extends ReactiveMongoRepository<MediaFile, 
   Mono<MediaFile> findByAbsolutePath(String absolutePath);
 
   Flux<MediaFile> findAllByThumbnailsIsNull();
+
 }

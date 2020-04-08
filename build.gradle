@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'com.diffplug.gradle.spotless' version '3.27.2'
+    id 'com.diffplug.gradle.spotless' version '3.28.1'
     id 'maven-publish'
     id 'java'
 }
@@ -34,13 +34,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 
     // Apache
-    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.commons:commons-lang3:3.10'
     implementation 'commons-io:commons-io:2.6'
 
     // Search
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.6.1'
-    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '7.6.1'
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.1'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.6.2'
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '7.6.2'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2'
 
     // Development
     compileOnly 'org.projectlombok:lombok'

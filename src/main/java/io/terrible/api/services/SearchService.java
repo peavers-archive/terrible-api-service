@@ -1,17 +1,16 @@
 /* Licensed under Apache-2.0 */
 package io.terrible.api.services;
 
-import java.io.IOException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.search.SearchResponse;
+import io.terrible.api.domain.MediaFile;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /** @author Chris Turner (chris@forloop.space) */
 public interface SearchService {
 
-  SearchResponse search(String query) throws IOException;
+  Mono<String> createIndex(String index) ;
 
-  Flux<BulkRequest> bulkIndex();
+  Mono<String> index(String index);
+
+  Flux<MediaFile> search(String query);
 }

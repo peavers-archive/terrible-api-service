@@ -1,4 +1,5 @@
 /* Licensed under Apache-2.0 */
+
 package io.terrible.api.controller;
 
 import io.terrible.api.domain.MediaFile;
@@ -9,27 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** @author Chris Turner (chris@forloop.space) */
+/**
+ * @author Chris Turner (chris@forloop.space)
+ */
 @Slf4j
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class MediaFileController {
 
-  private final MediaFileRepository mediaFileRepository;
+    private final MediaFileRepository mediaFileRepository;
 
-  @GetMapping("/media-files")
-  public Flux<MediaFile> findAll() {
-    return mediaFileRepository.findAll();
-  }
+    @GetMapping("/media-files")
+    public Flux<MediaFile> findAll() {
 
-  @GetMapping("/media-files/{id}")
-  public Mono<MediaFile> findById(@PathVariable final String id) {
-    return mediaFileRepository.findById(id);
-  }
+        return mediaFileRepository.findAll();
+    }
 
-  @PostMapping("/media-files")
-  public Mono<MediaFile> save(@RequestBody final MediaFile mediaFile) {
-    return mediaFileRepository.save(mediaFile);
-  }
+    @GetMapping("/media-files/{id}")
+    public Mono<MediaFile> findById(@PathVariable final String id) {
+
+        return mediaFileRepository.findById(id);
+    }
+
+    @PostMapping("/media-files")
+    public Mono<MediaFile> save(@RequestBody final MediaFile mediaFile) {
+
+        return mediaFileRepository.save(mediaFile);
+    }
+
 }

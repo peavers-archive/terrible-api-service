@@ -31,10 +31,14 @@ public class StaticResourceController {
   }
 
   @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-  public Resource video(@RequestParam final String path) {
+  public Resource video(@RequestParam final String path) throws Exception {
 
     final File file = new File(path);
 
-    return file.canRead() ? new FileSystemResource(file) : null;
+    if (file.canRead()) {
+      return new FileSystemResource(file);
+    } else {
+      throw new Exception("Unable to read file");
+    }
   }
 }

@@ -11,12 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/**
- * These are quick endpoints for development, they will be replaced with something else at some
- * point...
- *
- * @author Chris Turner (chris@forloop.space)
- */
 @Slf4j
 @CrossOrigin
 @RestController

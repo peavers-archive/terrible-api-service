@@ -3,7 +3,7 @@ package io.terrible.api.controller;
 
 import io.terrible.api.domain.MediaFile;
 import io.terrible.api.domain.ThumbnailList;
-import io.terrible.api.repository.MediaFileRepository;
+import io.terrible.api.services.MediaFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,23 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-/** @author Chris Turner (chris@forloop.space) */
 @Slf4j
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class ThumbnailController {
 
-  private final MediaFileRepository mediaFileRepository;
+  private final MediaFileService mediaFileService;
 
   @PostMapping("/thumbnails")
   public Mono<MediaFile> save(@RequestBody final ThumbnailList thumbnails) {
 
-    log.info("Saving thumbnails {}", thumbnails.getVideoPath());
-
-    return mediaFileRepository
+    return mediaFileService
         .findByAbsolutePath(thumbnails.getVideoPath())
         .doOnNext(mediaFile -> mediaFile.setThumbnails(thumbnails.getThumbnails()))
-        .flatMap(mediaFileRepository::save);
+        .flatMap(mediaFileService::save);
   }
 }

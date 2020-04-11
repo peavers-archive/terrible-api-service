@@ -3,6 +3,7 @@ package io.terrible.api.repository;
 
 import io.terrible.api.domain.Directory;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
 
-/** @author Chris Turner (chris@forloop.space) */
+@Repository
 public interface DirectoryRepository extends ReactiveMongoRepository<Directory, String> {}

@@ -9,35 +9,34 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** @author Chris Turner (chris@forloop.space) */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class DirectoryServiceImpl implements DirectoryService {
 
-  private final DirectoryRepository directoryRepository;
+  private final DirectoryRepository repository;
 
   @Override
   public Flux<Directory> findAll() {
 
-    return directoryRepository.findAll();
+    return repository.findAll();
   }
 
   @Override
   public Mono<Directory> save(final Directory directory) {
 
-    return directoryRepository.save(directory);
+    return repository.save(directory);
   }
 
   @Override
   public Mono<Directory> findById(final String directoryId) {
 
-    return directoryRepository.findById(directoryId);
+    return repository.findById(directoryId);
   }
 
   @Override
   public Mono<Void> deleteById(final String directoryId) {
 
-    return directoryRepository.deleteById(directoryId);
+    return repository.deleteById(directoryId);
   }
 }

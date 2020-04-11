@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/** @author Chris Turner (chris@forloop.space) */
 @Data
 @Builder
 @AllArgsConstructor

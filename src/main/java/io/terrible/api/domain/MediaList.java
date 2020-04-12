@@ -23,5 +23,5 @@ public class MediaList {
 
   private String name;
 
-  private HashSet<MediaFile> mediaFiles = new HashSet<>();
+  @Builder.Default private HashSet<MediaFile> mediaFiles = new HashSet<>();
 }

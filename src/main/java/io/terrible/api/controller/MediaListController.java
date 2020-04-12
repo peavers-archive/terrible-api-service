@@ -17,14 +17,16 @@ public class MediaListController {
 
   private final MediaListService mediaListService;
 
-  @GetMapping("media-lists/{id}")
-  public Mono<MediaList> findById(@PathVariable final String id) {
-    return mediaListService.findById(id);
+  @GetMapping("media-lists/{nameOrId}")
+  public Mono<MediaList> findById(@PathVariable final String nameOrId) {
+    return mediaListService
+        .findByNameOrId(nameOrId)
+        .switchIfEmpty(mediaListService.save(MediaList.builder().name(nameOrId).build()));
   }
 
   @GetMapping("media-lists")
-  public Flux<MediaList> findAll() {
-    return mediaListService.findAll();
+  public Flux<MediaList> findAll(@RequestParam(required = false) final String filter) {
+    return mediaListService.findAll(filter);
   }
 
   @PostMapping("media-lists")

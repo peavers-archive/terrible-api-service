@@ -8,9 +8,9 @@ import reactor.core.publisher.Mono;
 /** @author Chris Turner (chris@forloop.space) */
 public interface MediaListService {
 
-  Flux<MediaList> findAll();
+  Flux<MediaList> findAll(String filter);
 
-  Mono<MediaList> findById(String id);
+  Mono<MediaList> findByNameOrId(String id);
 
   Mono<MediaList> save(MediaList mediaFile);
 

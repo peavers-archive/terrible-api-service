@@ -17,6 +17,8 @@ public class MediaListServiceImpl implements MediaListService {
 
   private final MediaListRepository repository;
 
+  private final MediaFileService mediaFileService;
+
   @Override
   public Flux<MediaList> findAll(final String filter) {
 

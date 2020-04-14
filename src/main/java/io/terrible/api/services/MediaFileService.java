@@ -18,4 +18,6 @@ public interface MediaFileService {
   Mono<MediaFile> save(MediaFile mediaFile);
 
   Mono<Void> deleteAll();
+
+  Flux<Object> findAllGroupedByDate();
 }

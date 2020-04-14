@@ -3,6 +3,7 @@ package io.terrible.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,11 +29,11 @@ public class MediaFile {
 
   private long size;
 
-  private long lastAccessTime;
+  private Date lastAccessTime;
 
-  private long lastModifiedTime;
+  private Date lastModifiedTime;
 
-  private long importedTime;
+  private Date importedTime;
 
-  private ArrayList<String> thumbnails;
+  @Builder.Default private ArrayList<String> thumbnails = new ArrayList<>();
 }

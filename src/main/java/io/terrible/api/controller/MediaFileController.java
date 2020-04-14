@@ -3,6 +3,7 @@ package io.terrible.api.controller;
 
 import io.terrible.api.domain.MediaFile;
 import io.terrible.api.services.MediaFileService;
+import io.terrible.api.services.MediaListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequiredArgsConstructor
 public class MediaFileController {
+
+  private final MediaListService mediaListService;
 
   private final MediaFileService mediaFileService;
 
@@ -38,6 +41,11 @@ public class MediaFileController {
   @DeleteMapping("/media-files")
   public Mono<Void> deleteAll() {
 
-    return mediaFileService.deleteAll();
+    return mediaFileService.deleteAll().then(mediaListService.deleteAll());
+  }
+
+  @GetMapping("test")
+  public Flux<Object> test() {
+    return mediaFileService.findAllGroupedByDate();
   }
 }

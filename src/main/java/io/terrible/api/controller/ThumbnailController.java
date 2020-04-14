@@ -24,7 +24,7 @@ public class ThumbnailController {
   public Mono<MediaFile> save(@RequestBody final ThumbnailList thumbnails) {
 
     return mediaFileService
-        .findByAbsolutePath(thumbnails.getVideoPath())
+        .findByPath(thumbnails.getVideoPath())
         .doOnNext(mediaFile -> mediaFile.setThumbnails(thumbnails.getThumbnails()))
         .flatMap(mediaFileService::save);
   }

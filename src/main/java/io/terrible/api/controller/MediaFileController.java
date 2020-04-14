@@ -44,8 +44,9 @@ public class MediaFileController {
     return mediaFileService.deleteAll().then(mediaListService.deleteAll());
   }
 
-  @GetMapping("test")
-  public Flux<Object> test() {
+  @GetMapping("/group/media-files")
+  public Flux<Object> group() {
+
     return mediaFileService.findAllGroupedByDate();
   }
 }

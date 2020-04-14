@@ -3,7 +3,11 @@ package io.terrible.api.services;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 import io.terrible.api.domain.GroupedMediaFile;
@@ -55,10 +59,10 @@ public class MediaFileServiceImpl implements MediaFileService {
   }
 
   @Override
-  public Mono<MediaFile> findByAbsolutePath(final String absolutePath) {
-    log.info("Find by absolute path {}", absolutePath);
+  public Mono<MediaFile> findByPath(final String path) {
+    log.info("Find by absolute path {}", path);
 
-    return repository.findByAbsolutePath(absolutePath);
+    return repository.findByPath(path);
   }
 
   @Override
@@ -77,7 +81,7 @@ public class MediaFileServiceImpl implements MediaFileService {
 
   public Flux<Object> findAllGroupedByDate() {
 
-    final String dateField = "lastAccessTime";
+    final String dateField = "importedTime";
 
     final LocalDate now = LocalDate.now();
     final LocalDate firstDay = now.with(firstDayOfYear());
@@ -104,7 +108,7 @@ public class MediaFileServiceImpl implements MediaFileService {
             .addToSet(
                 new Document("id", new Document("$toString", "$_id"))
                     .append("name", "$name")
-                    .append("absolutePath", "$absolutePath"))
+                    .append("path", "$path"))
             .as("results");
 
     final Aggregation aggregation =

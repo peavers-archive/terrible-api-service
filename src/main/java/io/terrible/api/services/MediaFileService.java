@@ -13,7 +13,7 @@ public interface MediaFileService {
 
   Mono<MediaFile> findById(String id);
 
-  Mono<MediaFile> findByAbsolutePath(String absolutePath);
+  Mono<MediaFile> findByPath(String absolutePath);
 
   Mono<MediaFile> save(MediaFile mediaFile);
 

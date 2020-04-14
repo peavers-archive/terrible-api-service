@@ -28,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
 
     return mediaFileService
         .findAllByThumbnailsIsNull()
-        .map(MediaFile::getAbsolutePath)
+        .map(MediaFile::getPath)
         .flatMap(
             path ->
                 webClient

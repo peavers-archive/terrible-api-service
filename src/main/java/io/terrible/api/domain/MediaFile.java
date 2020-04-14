@@ -2,8 +2,8 @@
 package io.terrible.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,17 +23,19 @@ public class MediaFile {
 
   private String name;
 
-  private String absolutePath;
+  private String path;
 
-  private String mimeType;
+  private String extension;
 
   private long size;
 
-  private Date lastAccessTime;
-
-  private Date lastModifiedTime;
-
-  private Date importedTime;
-
   @Builder.Default private ArrayList<String> thumbnails = new ArrayList<>();
+
+  private LocalDateTime createdTime;
+
+  private LocalDateTime lastAccessTime;
+
+  private LocalDateTime lastModifiedTime;
+
+  private LocalDateTime importedTime;
 }

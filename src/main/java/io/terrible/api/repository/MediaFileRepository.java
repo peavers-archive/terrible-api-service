@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface MediaFileRepository extends ReactiveMongoRepository<MediaFile, String> {
 
-  Mono<MediaFile> findByAbsolutePath(String absolutePath);
+  Mono<MediaFile> findByPath(String absolutePath);
 
   Flux<MediaFile> findAllByThumbnailsIsNull();
 }

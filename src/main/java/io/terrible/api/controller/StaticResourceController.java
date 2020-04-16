@@ -1,18 +1,21 @@
 /* Licensed under Apache-2.0 */
+
 package io.terrible.api.controller;
 
-import java.io.File;
-import java.net.MalformedURLException;
+import io.terrible.api.domain.MediaFile;
+import io.terrible.api.repository.MediaFileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+import java.io.File;
 
 @Slf4j
 @CrossOrigin
@@ -20,25 +23,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class StaticResourceController {
 
-  @GetMapping(value = "static-resource/image", produces = MediaType.IMAGE_JPEG_VALUE)
-  public Resource image(@RequestParam final String path) throws MalformedURLException {
+    private final MediaFileRepository mediaFileRepository;
 
-    final File file = new File(path);
+    @GetMapping(value = "static-resource/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public Mono<Resource> image(@RequestParam final String path) {
 
-    return file.canRead()
-        ? new FileSystemResource(file)
-        : new UrlResource("https://via.placeholder.com/316x210");
-  }
-
-  @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-  public Resource video(@RequestParam final String path) throws Exception {
-
-    final File file = new File(path);
-
-    if (file.canRead()) {
-      return new FileSystemResource(file);
-    } else {
-      throw new Exception("Unable to read file");
+        return Mono.just(new FileSystemResource(new File(path)));
     }
-  }
+
+    @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public Mono<Resource> video(@RequestParam final String id) {
+
+        return mediaFileRepository.findById(id).map(MediaFile::getPath).map(FileSystemResource::new);
+    }
+
 }

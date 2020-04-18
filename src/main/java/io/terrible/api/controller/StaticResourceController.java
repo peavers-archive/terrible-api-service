@@ -1,9 +1,8 @@
 /* Licensed under Apache-2.0 */
-
 package io.terrible.api.controller;
 
 import io.terrible.api.domain.MediaFile;
-import io.terrible.api.repository.MediaFileRepository;
+import io.terrible.api.services.MediaFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -23,18 +22,18 @@ import java.io.File;
 @RequiredArgsConstructor
 public class StaticResourceController {
 
-    private final MediaFileRepository mediaFileRepository;
+  private final MediaFileService mediaFileService;
 
-    @GetMapping(value = "static-resource/image", produces = MediaType.IMAGE_JPEG_VALUE)
-    public Mono<Resource> image(@RequestParam final String path) {
+  @GetMapping(value = "static-resource/image", produces = MediaType.IMAGE_JPEG_VALUE)
+  public Mono<Resource> image(@RequestParam final String path) {
 
-        return Mono.just(new FileSystemResource(new File(path)));
-    }
+    return Mono.just(new FileSystemResource(new File(path)));
+  }
 
-    @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public Mono<Resource> video(@RequestParam final String id) {
+  @GetMapping(value = "static-resource/video", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+  public Mono<Resource> video(@RequestParam final String id) {
 
-        return mediaFileRepository.findById(id).map(MediaFile::getPath).map(FileSystemResource::new);
-    }
-
+    return mediaFileService.findById(id)
+            .map(MediaFile::getPath).map(FileSystemResource::new);
+  }
 }

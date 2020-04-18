@@ -3,6 +3,7 @@ package io.terrible.api.controller;
 
 import io.terrible.api.domain.GroupedMediaFile;
 import io.terrible.api.domain.MediaFile;
+import io.terrible.api.services.HistoryService;
 import io.terrible.api.services.MediaFileService;
 import io.terrible.api.services.MediaListService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,8 @@ public class MediaFileController {
 
   private final MediaFileService mediaFileService;
 
+  private final HistoryService historyService;
+
   @GetMapping("/media-files")
   public Flux<MediaFile> findAll() {
 
@@ -49,7 +52,7 @@ public class MediaFileController {
   @DeleteMapping("/media-files")
   public Mono<Void> deleteAll() {
 
-    return mediaFileService.deleteAll().then(mediaListService.deleteAll());
+    return mediaFileService.deleteAll().then(mediaListService.deleteAll()).then(historyService.deleteAll());
   }
 
   @GetMapping("/group/media-files")

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -27,6 +31,8 @@ public class HistoryServiceImpl implements HistoryService {
 
         final String historyId = "1"; // Just use one document at the moment.
 
+        mediaFile.setLastWatched(LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()));
+
         return repository.findById(historyId)
                 .defaultIfEmpty(History.builder().id(historyId).build())
                 .doOnNext(history -> history.getResults().add(mediaFile))
@@ -43,6 +49,12 @@ public class HistoryServiceImpl implements HistoryService {
     public Mono<Void> deleteById(final String id) {
 
         return repository.deleteById(id);
+    }
+
+    @Override
+    public Mono<Void> deleteAll() {
+
+        return repository.deleteAll();
     }
 
 }

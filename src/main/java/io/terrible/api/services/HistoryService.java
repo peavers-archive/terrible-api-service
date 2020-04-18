@@ -14,5 +14,6 @@ public interface HistoryService {
     Mono<History> findById(String directoryId);
 
     Mono<Void> deleteById(String directoryId);
-    
+
+    Mono<Void> deleteAll();
 }

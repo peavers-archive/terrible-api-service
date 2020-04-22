@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface TaskService {
 
-  Flux<Boolean> createThumbnails();
+  Flux<?> createThumbnails();
 
-  Mono<Boolean> scanDirectory(String path);
+  Mono<String> scanDirectory(String path);
 }

@@ -2,6 +2,13 @@ spring:
   application:
     name: terrible-api-service
 
+  cloud:
+    stream:
+      bindings:
+        apiChannel:
+          destination: terrible-api-service
+          group: terrible-api-service
+
 server:
   port: 8081
 
@@ -10,8 +17,23 @@ terrible:
   task-processor:
     scheme: http
     host: localhost
-    port: 8080
+    port: 8083
   search-service:
     scheme: http
     host: localhost
     port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true

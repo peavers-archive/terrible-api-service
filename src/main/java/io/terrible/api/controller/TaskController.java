@@ -20,13 +20,13 @@ public class TaskController {
   private final TaskService taskService;
 
   @GetMapping("/task/thumbnails")
-  public Flux<Boolean> thumbnails() {
+  public Flux<?> thumbnails() {
 
     return taskService.createThumbnails();
   }
 
   @GetMapping("/task/directories")
-  public Mono<Boolean> directories(@RequestParam final String path) {
+  public Mono<?> directories(@RequestParam final String path) {
 
     return taskService.scanDirectory(path);
   }

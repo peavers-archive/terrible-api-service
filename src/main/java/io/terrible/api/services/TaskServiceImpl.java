@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
   private final WebClient webClient = WebClient.create();
 
   @Override
-  public Flux<Boolean> createThumbnails() {
+  public Flux<String> createThumbnails() {
 
     log.info("Create thumbnails");
 
@@ -44,11 +44,11 @@ public class TaskServiceImpl implements TaskService {
                                 .queryParam("path", path)
                                 .build())
                     .retrieve()
-                    .bodyToMono(Boolean.class));
+                    .bodyToMono(String.class));
   }
 
   @Override
-  public Mono<Boolean> scanDirectory(final String path) {
+  public Mono<String> scanDirectory(final String path) {
 
     log.info("Scan directory");
 
@@ -65,6 +65,6 @@ public class TaskServiceImpl implements TaskService {
                     .queryParam("path", path)
                     .build())
         .retrieve()
-        .bodyToMono(Boolean.class);
+            .bodyToMono(String.class);
   }
 }

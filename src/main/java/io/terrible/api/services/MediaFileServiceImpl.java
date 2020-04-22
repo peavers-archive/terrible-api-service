@@ -76,8 +76,7 @@ public class MediaFileServiceImpl implements MediaFileService {
 
         log.info("Save {}", mediaFile);
 
-        // Ignore duplication errors as they're expected
-        return repository.save(mediaFile).onErrorResume(Exception.class, e -> Mono.just(mediaFile));
+        return repository.save(mediaFile);
     }
 
     @Override

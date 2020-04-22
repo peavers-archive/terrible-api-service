@@ -1,5 +1,4 @@
 /* Licensed under Apache-2.0 */
-
 package io.terrible.api.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,18 +14,17 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 @EnableBinding(MessageBinding.class)
 public class MediaFileListener {
 
-    private final ObjectMapper objectMapper;
+  private final ObjectMapper objectMapper;
 
-    private final MediaFileService mediaFileService;
+  private final MediaFileService mediaFileService;
 
-    @StreamListener(target = MessageBinding.API_CHANNEL)
-    public void processDirectoryMessage(final String message) {
+  @StreamListener(target = MessageBinding.API_CHANNEL)
+  public void processDirectoryMessage(final String message) {
 
-        try {
-            mediaFileService.save(objectMapper.readValue(message, MediaFile.class)).subscribe();
-        } catch (final Exception e) {
-            log.info("Unable save media file {}", e.getMessage());
-        }
+    try {
+      mediaFileService.save(objectMapper.readValue(message, MediaFile.class)).subscribe();
+    } catch (final Exception e) {
+      log.info("Unable save media file {}", e.getMessage());
     }
-
+  }
 }

@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package io.terrible.api.services;
 
 import io.terrible.api.domain.History;
@@ -6,9 +7,9 @@ import reactor.core.publisher.Mono;
 
 public interface HistoryService {
 
-    Mono<History> addToHistory(MediaFile mediaFile);
+  Mono<History> addToHistory(MediaFile mediaFile);
 
-    Mono<History> getHistory();
+  Mono<History> getHistory();
 
-    Mono<Void> deleteAll();
+  Mono<Void> deleteAll();
 }

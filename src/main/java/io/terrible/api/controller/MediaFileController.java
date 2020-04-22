@@ -52,7 +52,10 @@ public class MediaFileController {
   @DeleteMapping("/media-files")
   public Mono<Void> deleteAll() {
 
-    return mediaFileService.deleteAll().then(mediaListService.deleteAll()).then(historyService.deleteAll());
+    return mediaFileService
+        .deleteAll()
+        .then(mediaListService.deleteAll())
+        .then(historyService.deleteAll());
   }
 
   @GetMapping("/group/media-files")

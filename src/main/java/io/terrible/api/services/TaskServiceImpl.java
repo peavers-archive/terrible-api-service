@@ -65,6 +65,6 @@ public class TaskServiceImpl implements TaskService {
                     .queryParam("path", path)
                     .build())
         .retrieve()
-            .bodyToMono(String.class);
+        .bodyToMono(String.class);
   }
 }

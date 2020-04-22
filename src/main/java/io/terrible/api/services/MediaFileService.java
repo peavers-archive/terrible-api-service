@@ -1,5 +1,4 @@
 /* Licensed under Apache-2.0 */
-
 package io.terrible.api.services;
 
 import io.terrible.api.domain.GroupedMediaFile;
@@ -9,18 +8,17 @@ import reactor.core.publisher.Mono;
 
 public interface MediaFileService {
 
-    Flux<MediaFile> findAll();
+  Flux<MediaFile> findAll();
 
-    Flux<MediaFile> findAllByThumbnailsIsNull();
+  Flux<MediaFile> findAllByThumbnailsIsNull();
 
-    Flux<GroupedMediaFile> findAllGroupedByDate(String dateField);
+  Flux<GroupedMediaFile> findAllGroupedByDate(String dateField);
 
-    Mono<MediaFile> findById(String id);
+  Mono<MediaFile> findById(String id);
 
-    Mono<MediaFile> findByPath(String absolutePath);
+  Mono<MediaFile> findByPath(String absolutePath);
 
-    Mono<MediaFile> save(MediaFile mediaFile);
+  Mono<MediaFile> save(MediaFile mediaFile);
 
-    Mono<Void> deleteAll();
-
+  Mono<Void> deleteAll();
 }

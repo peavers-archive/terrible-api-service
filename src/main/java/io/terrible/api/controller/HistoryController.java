@@ -1,5 +1,4 @@
 /* Licensed under Apache-2.0 */
-
 package io.terrible.api.controller;
 
 import io.terrible.api.domain.History;
@@ -22,18 +21,17 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class HistoryController {
 
-    private final HistoryService historyService;
+  private final HistoryService historyService;
 
-    @PostMapping
-    public Mono<History> addToHistory(@RequestBody final MediaFile mediaFile) {
+  @PostMapping
+  public Mono<History> addToHistory(@RequestBody final MediaFile mediaFile) {
 
-        return historyService.addToHistory(mediaFile);
-    }
+    return historyService.addToHistory(mediaFile);
+  }
 
-    @GetMapping
-    public Mono<History> getHistory() {
+  @GetMapping
+  public Mono<History> getHistory() {
 
-        return historyService.getHistory();
-    }
-
+    return historyService.getHistory();
+  }
 }

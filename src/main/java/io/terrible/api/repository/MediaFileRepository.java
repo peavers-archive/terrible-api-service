@@ -12,6 +12,8 @@ public interface MediaFileRepository extends ReactiveMongoRepository<MediaFile, 
 
   Mono<MediaFile> findByPath(String absolutePath);
 
+  Flux<MediaFile> findAllByOrderBySizeDesc();
+
   Flux<MediaFile> findAllByThumbnailsIsNull();
 
   Flux<MediaFile> findAllByOrderByLastModifiedTimeDesc();

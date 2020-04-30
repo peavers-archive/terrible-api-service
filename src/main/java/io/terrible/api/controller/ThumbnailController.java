@@ -9,18 +9,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @Slf4j
 @CrossOrigin
 @RestController
+@RequestMapping("/thumbnails")
 @RequiredArgsConstructor
 public class ThumbnailController {
 
   private final MediaFileService mediaFileService;
 
-  @PostMapping("/thumbnails")
+  @PostMapping
   public Mono<MediaFile> save(@RequestBody final ThumbnailList thumbnails) {
 
     return mediaFileService

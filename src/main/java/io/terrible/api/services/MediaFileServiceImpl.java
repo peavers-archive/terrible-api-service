@@ -42,7 +42,15 @@ public class MediaFileServiceImpl implements MediaFileService {
 
     log.info("Find all");
 
-    return repository.findAllByOrderByLastModifiedTimeDesc();
+    return repository.findAllByOrderBySizeDesc();
+  }
+
+  @Override
+  public Flux<MediaFile> findAllByOrderBySizeDesc(final int limit) {
+
+    log.info("Find by size top {}", limit);
+
+    return repository.findAllByOrderBySizeDesc().take(limit);
   }
 
   @Override
@@ -87,6 +95,8 @@ public class MediaFileServiceImpl implements MediaFileService {
 
   @Override
   public Flux<GroupedMediaFile> findAllGroupedByDate(final String dateField) {
+
+    log.info("Find all grouped by date {}", dateField);
 
     final LocalDate now = LocalDate.now();
     final LocalDate firstDay = now.with(firstDayOfYear());

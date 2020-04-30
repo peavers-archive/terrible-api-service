@@ -12,24 +12,25 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequestMapping("/search")
 @RequiredArgsConstructor
 public class SearchController {
 
   private final SearchService searchService;
 
-  @GetMapping("/search/index")
+  @GetMapping("/index")
   public Mono<String> index() {
 
     return searchService.createIndex("media").then(searchService.populate("media"));
   }
 
-  @GetMapping("/search")
+  @GetMapping
   public Flux<MediaFile> search(@RequestParam final String query) {
 
     return searchService.search(query);
   }
 
-  @DeleteMapping("/search")
+  @DeleteMapping
   public Mono<Void> deleteAll() {
 
     return searchService.deleteIndex();

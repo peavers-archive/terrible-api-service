@@ -10,6 +10,8 @@ public interface MediaFileService {
 
   Flux<MediaFile> findAll();
 
+  Flux<MediaFile> findAllByOrderBySizeDesc(int limit);
+
   Flux<MediaFile> findAllByThumbnailsIsNull();
 
   Flux<GroupedMediaFile> findAllGroupedByDate(String dateField);

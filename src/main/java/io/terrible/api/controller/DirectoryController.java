@@ -11,32 +11,33 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequestMapping("/directory")
 @RequiredArgsConstructor
 public class DirectoryController {
 
   private final DirectoryService directoryService;
 
-  @GetMapping("/directory")
+  @GetMapping
   public Mono<Directory> findAll() {
 
     return directoryService.findAll().next();
   }
 
-  @PostMapping("/directory")
+  @PostMapping
   public Mono<Directory> save(@RequestBody final Directory directory) {
 
     return directoryService.save(directory);
   }
 
-  @GetMapping("/directory/{directoryId}")
-  public Mono<Directory> findById(@PathVariable final String directoryId) {
+  @GetMapping("/{id}")
+  public Mono<Directory> findById(@PathVariable final String id) {
 
-    return directoryService.findById(directoryId);
+    return directoryService.findById(id);
   }
 
-  @DeleteMapping("/directory/{directoryId}")
-  public Mono<Void> deleteById(@PathVariable final String directoryId) {
+  @DeleteMapping("/{id}")
+  public Mono<Void> deleteById(@PathVariable final String id) {
 
-    return directoryService.deleteById(directoryId);
+    return directoryService.deleteById(id);
   }
 }

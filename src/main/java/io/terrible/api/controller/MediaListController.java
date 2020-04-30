@@ -12,34 +12,35 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequestMapping("/media-lists")
 @RequiredArgsConstructor
 public class MediaListController {
 
   private final MediaListService mediaListService;
 
-  @GetMapping("media-lists/{nameOrId}")
-  public Mono<MediaList> findById(@PathVariable final String nameOrId) {
+  @GetMapping("/{id}")
+  public Mono<MediaList> findById(@PathVariable final String id) {
     return mediaListService
-        .findByNameOrId(nameOrId)
-        .switchIfEmpty(mediaListService.save(MediaList.builder().name(nameOrId).build()));
+        .findByNameOrId(id)
+        .switchIfEmpty(mediaListService.save(MediaList.builder().name(id).build()));
   }
 
-  @GetMapping("media-lists")
+  @GetMapping
   public Flux<MediaList> findAll(@RequestParam(required = false) final String filter) {
     return mediaListService.findAll(filter);
   }
 
-  @PostMapping("media-lists")
+  @PostMapping
   public Mono<MediaList> save(@RequestBody final MediaList mediaList) {
     return mediaListService.save(mediaList);
   }
 
-  @DeleteMapping("media-lists/{id}")
+  @DeleteMapping("/{id}")
   public Mono<Void> deleteById(@PathVariable final String id) {
     return mediaListService.deleteById(id);
   }
 
-  @DeleteMapping("media-lists")
+  @DeleteMapping
   public Mono<Void> delete() {
     return mediaListService.deleteAll();
   }

@@ -8,6 +8,9 @@ spring:
         apiChannel:
           destination: terrible-api-service
           group: terrible-api-service
+        apiChannelThumbnail:
+          destination: terrible-api-service-thumbnail
+          group: terrible-api-service
 
 server:
   port: 8081

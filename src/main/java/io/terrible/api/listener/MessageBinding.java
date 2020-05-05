@@ -8,6 +8,12 @@ public interface MessageBinding {
 
   String API_CHANNEL = "apiChannel";
 
+  String API_CHANNEL_THUMBNAIL = "apiChannelThumbnail";
+
   @Input(API_CHANNEL)
   SubscribableChannel apiChannel();
+
+  @Input(API_CHANNEL_THUMBNAIL)
+  SubscribableChannel apiChannelThumbnail();
+
 }

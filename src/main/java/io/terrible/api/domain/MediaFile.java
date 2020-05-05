@@ -2,14 +2,15 @@
 package io.terrible.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Data
 @Builder
@@ -24,6 +25,8 @@ public class MediaFile {
   private String name;
 
   private String path;
+
+  private String thumbnailPath;
 
   private String extension;
 
